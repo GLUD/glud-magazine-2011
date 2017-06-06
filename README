@@ -1,0 +1,15 @@
+GLUD Magazie NĂşmero 1. Primera EdiciĂłn, 2011
+Lee el fichero LICENCIA
+
+Instrucciones RĂĄpidas.
+----------------------
+* Para generar la revista ejecuta:
+  make
+
+* Para eliminar los ficheros temporales que genera LaTeX
+  make clean
+
+* Para borrarlo todo (incluyendo el ps.gz y el pdf)
+  make clean-all
+  
+

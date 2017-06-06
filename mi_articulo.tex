@@ -1,0 +1,200 @@
+% Este fichero es parte del Número 5 de la Revista Occam's Razor
+% Revista Occam's Razor Número 5
+%
+% (c) 2010 The Occam's Razor Team
+%
+% Esta obra está bajo una licencia Reconocimiento 2.5 Espańa de Creative
+% Commons. Para ver una copia de esta licencia, visite 
+% http://creativecommons.org/licenses/by/2.5/es/
+% o envie una carta a Creative Commons, 171 Second Street, Suite 300, 
+% San Francisco, California 94105, USA.
+
+% Seccion Introducción
+%
+
+\rput(2.5,-2.3){\resizebox{!}{5.7cm}{{\epsfbox{images/mi_articulo/Kokopelli.eps}}}}%Imagen de el comienzo de el articulo, coordenadas desde 
+                                                                             %la parte superior izquierda del margen de la pagina
+
+% -------------------------------------------------
+% Cabecera
+\begin{flushright}
+\msection{introcolor}{black}{0.25}{INTRODUCCIÓN} %titulo de la seccion
+
+\mtitle{10cm}{El Sueńo Que se Gesta en una Mente}
+
+\msubtitle{8cm}{Anécdotas desde el Comienzo}
+
+{\sf por Chimini}
+
+{\psset{linecolor=black,linestyle=dotted}\psline(-12,0)}
+\end{flushright}
+
+\vspace{2mm}
+% -------------------------------------------------
+
+\begin{multicols}{2}
+
+
+% Introducción
+\intro{introcolor}{L}{o complicado de un proyecto es la planificación 
+que se hace necesaria para poder llevar este a un desarrollo constante, 
+con la menor cantidad de contratiempos, la realización efectiva de todas 
+y cada una de las actividades propuestas en el mismo y claro esta llevarlo 
+a feliz termino o en su defecto a un mantenimiento constante y sostenible 
+con la menor cantidad de revisiones y auditorías posibles.
+}
+
+\vspace{2mm}
+
+% Cuerpo del artículo
+
+Pero todo lo que he dicho en el párrafo anterior no es mas que teoría 
+acerca de un proyecto, lo realmente importante como se menciona en la 
+primera oración del mismo es, realizar la debida planificación sobre 
+el proyecto, como me dirían un colega, "lo importante es saber hacer 
+la gestión", y como tambien en algún momento de mi carrera de pregrado un profesor 
+me dejo claro en una clase, "lo importante para la planificación de un 
+proyecto es ver el futuro y lo que no se pueda predecir se tiene que 
+imaginar para poder estar preparado para afrontar cualquier contratiempo, 
+solucionarlo en la menor brevedad y optimizando el máximo de recursos.\\
+Pues bien este par de cosas la he tenido muy en cuenta cuando se comenzó 
+a planear este proyecto, {\em {\color{introcolor}{una revista}}}, cuando mi boca se abrió para 
+pronunciar estas palabras en una de las reuniones del GLUD 
+(grupo GNU/Linux de la universidad Distrital) para proporcionar una 
+repuesta a la pregunta żmuchachos que otra alternativa podemos poner en 
+practica para promover los proyectos y las ideas del software libre?, 
+pensar en la idea de una revista fue fácil pero hacer la planificación y 
+la gestión para que este proyecto dejara de ser un sueńo y se convirtiera 
+en una realidad fue una tarea un poco mas compleja de lo que pensé en un 
+principio.\\
+
+\begin{entradilla}
+{\em {\color{introcolor}{GLUD Magazine}} es un espacio para los que creen
+que este cuento todavia puede cambiar y que la solucion esta en el software
+libre y opensource.}
+\end{entradilla}
+
+\sectiontext{white}{black}{LA ELECCIÓN}
+
+A continuación enumero algunas de las inquietudes y contratiempos que se presentaron en la puesta en 
+marcha de la revista del GLUD. Primero digamos que cuando empeso no se sabia ni en que se haria la 
+edicion de este proyecto, es decir no se sabia si utilizar un editor del tipo WYSIWYG o uno del tipo 
+WYSIWYM, para aqueyos que no estan familiarizados con esta distincio entre editored de texto pues 
+bueno aquí les va una explicacion muy basica. El primer temino es el acronimo de What You See Is 
+What You Get, los editores de este tipo nos permiten ver la estructura final de un producto mientras lo 
+estamos editando, mientras que los que son del tipo WYSIWYM (What You See Is What You Mean) 
+son menos intuitivos en la parte de el producto final realmente lo que se hace cuando se edita un 
+documento de este tipo es introducir en el editor la sintaxis que tendria que llevar el documento, por 
+ejmplo: si se desea un titulo se coloca un comando que designe titulo y el contenido de el titulo y asi 
+con el resto del documento como colocar un autor y el cuerpo del documento pero no hay que 
+preocuparse de como queda la estructura visual del mismo porque de esta funcion se encarga el 
+programa editor directamente. Entonces lo que tiene que hacer el usuario es preocuparce  del contenido 
+que desea que aparesca en el documento. 
+
+Los beneficios de un tipo de editor con respecto a otro quedan a criterio del usuario, pero en el 
+planteamiento de un proyecto como este se desidio hacerlo con un editor que proporcionara una salida 
+grafica visualmente muy  atractiva y que permitiera generar atributos especiales dentro del documento 
+de una forma facil asi no fuera uy intuitiva. Asi que debido a este hecho se desidio que se haria con 
+latex, puesto que este es un editor del tipo  WYSIWYM el documento tendria que tener  un codigo y 
+ademas sus parted podrian ser desagregadas debido a que se podria hacer un documento que compilara 
+las partes por separado y luego otro muy pequeńo que uinera estas partes, asi seria mas facil pasar el 
+formato a quienes uisieran aportar a la revista y que ellos lo retornaran con su contenido editado para 
+que puedira ser adicionado de una forma facil al documento final.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ebOpage{introcolor}{0.35}{INTRODUCCIÓN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectiontext{white}{black}{EL CÓDIGO}
+
+En mi vida habia manejado latex para hacer edicion de documentos como papers, cartas, lo mas basico, 
+pero nunca me habia dado a la tarea de hacer algo como una revista. Me encontre con algo de lo cual 
+no vi su magnitud sino hasta que lo tube directamente frente a mi nariz, hacer una revista era un poco 
+mas complicado de lo que habia pensado en el pricipio, asi que al ver que mi proposito no avanzaba lo 
+suficiente decidi que era hora de buscar ejemplos. Alguien ya tiene que haber pensado en hacer una 
+revista con Latex, por que no mirar su trabajo y basarme en ellos. Fue un aspecto complicado de llebar 
+a cabo debido a que no encontre revistas de este estilo sino hasta que por casualidad di con una revista 
+que era la realizacion del sueńo pero que ya otra persona habia hecho en un distante lugar. 
+
+De esta forma llegue a tropesarme con la revista OCCAM'S RAZOR, la cual tenia exactamente el 
+aspecto que deseaba para la revista del GLUD, pero esta adicionalmente tenia otro atractivo que me 
+genero una gran felicidad, estaba licenciada bajo creative commons y ellos estipulaban que podia usar 
+el codigo y lo unico que tenia que hacer era darles el reconocimiento de que ellos eran los realmente 
+responsables de el mismo. Asi que dadoa todos estos hecho lo unico que faltaba por hacer era enviarles 
+un correo de parte del GLUD pidiendo su permiso para la utilizacion del coodigo y la respuesta de ellos 
+fue que no habia problema asi que proseguimos con el proyecto.
+
+% A continuación un ejemplo de como se puede hacer una entradilla de código en 
+% lenguaje C, de parte de los amigos de occam's razor.
+
+%\lstset{language=C,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+%\begin{lstlisting}
+%#include <osgDB/ReadFile>
+%#include <osgViewer/Viewer>
+%
+%using namespace osgDB;
+%int main(int ac, char **a)
+%{
+%  osgViewer::Viewer viewer;
+%  viewer.setSceneData(readNodeFile(a[1]));
+%
+%  return viewer.run();
+%}
+%\end{lstlisting}
+
+En mi vida habia manejado latex para hacer edicion de documentos como papers, cartas, lo mas basico, 
+pero nunca me habia dado a la tarea de hacer algo como una revista. Me encontre con algo de lo cual 
+no vi su magnitud sino hasta que lo tube directamente frente a mi nariz, hacer una revista era un poco 
+mas complicado de lo que habia pensado en el pricipio, asi que al ver que mi proposito no avanzaba lo 
+suficiente decidi que era hora de buscar ejemplos. Alguien ya tiene que haber pensado en hacer una 
+revista con Latex, por que no mirar su trabajo y basarme en ellos. Fue un aspecto complicado de llebar 
+a cabo debido a que no encontre revistas de este estilo sino hasta que por casualidad di con una revista 
+que era la realizacion del sueńo pero que ya otra persona habia hecho en un distante lugar. 
+
+
+\begin{entradilla}
+{\em {\color{introcolor}{Latex}} facilito las cosas en el desarrollo del proyecto
+}
+\end{entradilla}
+
+
+De esta forma llegue a tropesarme con la revista OCCAM'S RAZOR, la cual tenia exactamente el 
+aspecto que deseaba para la revista del GLUD, pero esta adicionalmente tenia otro atractivo que me 
+genero una gran felicidad, estaba licenciada bajo creative commons y ellos estipulaban que podia usar 
+el codigo y lo unico que tenia que hacer era darles el reconocimiento de que ellos eran los realmente 
+responsables de el mismo. Asi que dadoa todos estos hecho lo unico que faltaba por hacer era enviarles 
+un correo de parte del GLUD pidiendo su permiso para la utilizacion del coodigo y la respuesta de ellos 
+fue que no habia problema asi que proseguimos con el proyecto.
+
+% A continuación un ejemplo de como se puede hacer una entradilla de código en 
+% lenguaje Make, de parte de los amigos de occam's razor.
+
+
+%\lstset{language=Make,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+%\begin{lstlisting}
+%MY_CFLAGS=-I${DEV_DIR}/include
+%MY_OSG_LIBS=-L${DEV_DIR}/lib -losgViewer
+%
+%mini: mini-viewer.cpp
+%	g++ -o $@ $< ${MY_CFLAGS} ${MY_OSG_LIBS}
+%\end{lstlisting}
+
+\sectiontext{white}{black}{LA REALIZACIÓN}
+
+Puede decirce que el resto de las cosas que me pasaron antes de este punto fueron lo mas compicado de 
+todo el tema pero realmente poner en practica el codigo fue complicado, se volvio insdispensable 
+estudiar el codigo para poder entender todas las maravillas que este prometia y poder utilizarlas de la 
+mejor manera posible, asi que luego de estudiarlo a fondo el codigo se hizo posible producir un primer 
+formato para edicion de articulos en la revista y es este el cual se envia a los interezados en realizar una 
+publicacion en la misma. Agradeciendo denuevo a todas aquellas personas que apoyaron la realizacion 
+de este proyecto y a nuestros amigos de occam's razor me despido y espero poder escribir algo de 
+mayor interes tecnologico y menos filosofico en otra oportunidad, por ahora deseo que sigan leyendo la 
+revista y que ojala la disfruten al maximo.
+A continuación dejo una de las imagenes originales de los amigos de occam's para que tengan un ejemplo
+de como insertar las suyas en sus articulos
+\end{multicols} %termina el entorno multicols
+%\eOpage %comienza una pagina nueva
+\rput(7.5,-2.0){\resizebox{10cm}{!}{{\epsfbox{images/mi_articulo/salsilla.eps}}}}
+
+%\clearpage
+%\pagebreak

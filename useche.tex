@@ -1,0 +1,74 @@
+% Esta obra está bajo una licencia Reconocimiento 2.5 España de Creative
+% Commons. Para ver una copia de esta licencia, visite 
+% http://creativecommons.org/licenses/by/2.5/es/
+% o envie una carta a Creative Commons, 171 Second Street, Suite 300, 
+% San Francisco, California 94105, USA.
+
+% Seccion Introducción
+%
+
+\rput(2.5,-2.3){\resizebox{!}{5.7cm}{{\epsfbox{images/mi_articulo/firefoxos.eps}}}}%Imagen de el comienzo de el articulo, coordenadas desde 
+                                                                                   %la parte superior izquierda del margen de la pagina
+
+% -------------------------------------------------
+% Cabecera
+\begin{flushright}
+\msection{introcolor}{black}{0.25}{Ensayo} %titulo de la sección
+
+\mtitle{10cm}{Android desde mi pequeño punto de vista} %titulo del articulo 
+
+\msubtitle{8cm}{¿Android en hardware abierto?} %subtitulo
+
+{\sf por JUUC} %autor
+
+{\psset{linecolor=black,linestyle=dotted}\psline(-12,0)}
+\end{flushright}
+
+\vspace{2mm}
+% -------------------------------------------------
+
+\begin{multicols}{2}
+
+
+% Introducción
+\intro{introcolor}{E}{n un tiempo el hardware era suficiente para todas las tareas en electrónica, se hacian circuitos de tal forma que se requería uno para cada tarea específica y en caso que se necesitara para otra labor, había que diseñar otro para que tuviera los nuevos requerimientos. Con la aparición de circuitos más complejos que permitían configurar su funcionamiento o tareas, de ahí el término programación y consecuentemente el del programa que define que es lo que va a hacer dicho hardware.
+}
+
+\vspace{2mm}
+
+% Cuerpo del artículo
+Android en la electrónica libre
+En un tiempo el hardware era suficiente para todas las tareas en electrónica, se hacían circuitos de tal forma que se requería uno para cada tarea específica y en caso que se necesitara para otra labor, había que diseñar otro para que tuviera los nuevos requerimientos. Con la aparición de circuitos más complejos que permitían configurar su funcionamiento o tareas, de ahí el término programación y consecuentemente el del programa que define qué es lo que va a hacer dicho hardware.
+Los teléfonos móviles en contante desarrollo llegaron a ser cada vez más complejos agregando funcionalidades que en vez de mejorar la calidad de la comunicación o la duración en batería lo que hacen es hacer parecer cada vez más estos dispositivos a un mini computador portátil con el que se puede hacer prácticamente de todo.
+Recuerdo que conocí el primer celular hace unos 13 años y el también fallecido biper, eran dispositivos un poco incómodos que en menos de unos 5 años se volvieron asequibles y bonitos, sin más funcionalidad que los juegos que se le instalaban; a alguien se le ocurrió hacer los smartphones, un hardware mucho mejor en términos de rendimiento, en que ese software básico para llamar y jugar se hacía muy poco viable por ir en contra del aprovechamiento máximo de ese hardware.
+Conozco intentos de sistemas operativos para smartphones como PalmOS, o muchos otro sistema operativo de Nokia y así mismo muchas del software que las compañías generaban para el innovador hardware que sacaban al mercado, pero quedaron cortos cuando el hardware se asemejaba más al de un computador, y no queda de otra que portar un sistema operativo con gran tiempo en desarrollo a los móviles. Ese software para smartphones que ha permanecido y seguirá por un largo tiempo por tener de soporte un sistema operativo para ordenadores personales con un gran tiempo de desarrollo a mi parecer es iOS, Windows Phone y Android o cualquier otro que use el kernel Linux.
+El primer SO (sistema operativo) que uso el kernel Linux fue Android y lo llevó a dispositivos móviles, luego fue MeeGo y así aparecen cada cierto tiempo uno que promete ser lo mejor como FirefoxOS (muy bueno por cierto, en lo personal porque he aprendido más de desarrollo web que de cualquier otro tipo de programación) o Ubuntu Phone; pero todos soportados por el gran aporte al software (no solo por ser software libre, sino por la calidad del mismo) que resulta ser el kernel Linux.
+Algo que me indigna muchas veces es que no se reconozca que Android es como es gracias al kernel Linux; si Google hubiera empezado de cero o a partir de un SO con licencia bsd o similar probablemente estaría muy lejos de alcanzar a iOS (a Windows Phone en estabilidad lo alcanza casi cualquiera), situación que probablemente no quisieran los de Google ya que siempre quieren que sus productos sean un éxito; le deben mucho de lo que son al software libre y por eso debería dejar de ocultar la realidad del kernel, así sea un poco menos “comercial”.
+El mundo del software libre mucha veces pega por su precio y no por alguna otra cuestión técnica, situación de muchos fabricantes chinos, que no les gustaría pagar por una licencia de Windows Phone o recurrir en gastos de ingeniería de software para hacer uno propio y con pensamiento de ingeniero apoyo dicha decisión, ¿Por qué usar crear uno propio si existe Android? un super Sistema Operativo creado por mentes brillantes, estable, popular, apoyado por el monstruo Google y compañías productoras de hardware, y todo esto gratis; sería una estupidez no hacerlo. Pero que ha pasado últimamente, las patentes estúpidas están haciendo que se haga imposible implementar el software libre, libre de cualquier pago.
+Ahora vamos con hardware abierto que usa Android; la verdad no conozco si no un proyecto que usa Android oficialmente, este es OUYA, una plataforma para juegos que busca regresarle el espíritu de hackers a las personas consideradas como gamers y que a su vez se han visto impedidos por las restricciones cada vez mayores que representan las consolas de juegos como el conocido Play Station, o el X-Box; meterle la mano a una máquina de estas es prácticamente imposible o incluso instalarle software también se hace muy difícil si no se hace por medios “oficiales” aun cuando la máquina es mía y tengo el derecho de hacerlo.
+Hablando del derecho de hacerlo, compré hace un tiempo una tablet china con Android 4.0, consume muchos recursos y no es para nada rápida, a pesar de que tiene un buen hardware a mi consideración (habrá de ser porque el software es muy genérico y no se optimiza sino a parecer para los dispositivos que impulsa Google, los fabricantes de hardware que incorporan dicho software se preocupan muy poco por eso, pero para eso están las Organizaciones como Linaro ). Hay que registrarse para usar el software con su completa capacidad (como se hace también con dispositivos como el Kindle), cosa que no me gusta. Si no tengo una cuenta Google, a pesar de que soy dueño del dispositivo, no puedo usarlo, debería ser más fácil usarlo y no obligarme a crear una cuenta con el casi monopolio informático de Google.
+OUYA como ya muchos sabrán fue impulsado en Kickstarter y resultó ser muy popular, demostrando así que el usuario de hoy en día quiere tener las libertades sobre el hardware o el software así no las use a cabalidad, pero que aun así hacen más fáciles las tareas (como de instalar juegos “piratas”); si eso no demuestra la capacidad de ganar dinero con negocios que respeten las libertades que debería tener un usuario y dueño del dispositivo ¿entonces qué?
+En expresión de esa búsqueda de libertad hay aplicaciones como F-Droid (que es su logo muy correctamente tiene una C invertida) que es un catálogo con aplicaciones FOSS (Software libre y de código abierto, Free and Open Source Software) demostrando que no se está corto de software libre en esta plataforma y a pesar de que no estoy en contra de Google play, si del software privativo, deberían poner más de las aplicaciones libres que hay (aunque entiendo que tienen que hacer un control).
+Otro punto que no me gusta de Android (si, si, al parecer lo que se hace popular cada vez se hace menos atrayente para algunas personas) es que se hace cada vez más excluyente, los dispositivos de baja gamma (entiendasen como dispositivos que no tienen los suficientes recursos de hardware para funcionar de una manera medianamente fluida con las nuevas versiones de Android, no necesariamente son malos, para nada) se han quedado con versiones antiguas de Android y para tener la nueva versión de Android hay que tener muchos recursos de hardware, que no se traduce en otra cosa que pagar más dinero para tener un dispositivo que funcione medianamente fluido (gamma media) o pagar aún más por un dispositivo como el Samsung Galaxy SIII o un mejorcito como el Sony(R) Xperia(TM) Z(Definitivamente el Nexus 4, resultó un dispositivo una ganga, pero imposible de acceder en países distintos a Estados Unidos; Si, se tienen ciertos servicios que hacen que pueda adquirirlo, pero eso hace que se aumente un poco más el precio por la adquisición del dispositivo, como siempre excluyente en todos los sentidos).
+La nueva propuesta en la mesa es Firefox OS, un sistema operativo que realmente me ha gustado, porque viene a ser accesible, rápido, fácil y con el nuevo estándar HTML5, este estándar es lo que más me gusta ya que las únicas aplicaciones que soy capaz de hacer bien son web, además de que gracias a eso, hay una cantidad impresionante de posibles programadores para este sistema operativo y mejora muchísimo su rendimiento frente a otras alternativas eliminando capas innecesarias de middleware (software intermedio, como la máquina virtual de java presente en el sistema operativo Android) haciendo que pueda ser usado en dispositivos mucho más baratos y asequibles a la mayoría de la población sin tantos recursos como la media de la población colombiana. Según he leído por ahí, el lanzamiento va a ser en Brasil, en una alianza con telefónica, se sabe que no va a ser fácil hacerlo visible en un mercado que pareciera saturado, pero el hueco donde se pueden hacer y de ahí expandirsen es los dispositivos que mencionaba anteriormente, los de gamma baja. Ya probé el sistema operativo desde el navegador Firefox por medio de una extensión llamada Firefox OS Simulator, y me ha parecido fantástico, muy liviano, nada que ver con el pesado Android y ese lenguaje a mi parecer fastidioso que es Java. He visto unos de los primeros dispositivos con este software en el sitio http://www.geeksphone.com/ y son hermosos, espero que lleguen pronto a Colombia para impresionar a todas las personas con esta adquisición y ver como podría desarrollar aplicaciones para este SO.
+Con la anterior crítica solo queda decir que la competencia siempre es buena, no basta con conformarse con el todo poderoso Google, ningún monopolio es bueno, por muy buenas que sean las intenciones de las compañías al fin y al cabo son eso, máquinas para hacer dinero, y el poder sosiega a las personas; dividir la cuota de mercado en muchas empresas es siempre mejor para el consumidor (ya he visto que la competencia de computadores es muy pareja y eso hace que cada vez esa competencia haga mejorar la oferta y su precio), si algún día llego a reemplazar a mi tradicional computador por un smartphone del futuro (que estoy seguro que va a llegar) espero que su sistema operativo sea una opción asequible para todo mundo y no se eleve por los cielos sin pensar en las consecuencias.
+
+\bibliographystyle{abbrv}
+\begin{bibliografia}
+\bibitem{kopka}
+Imágen extraída de, CC-by-nc-sa
+http://www.flickr.com/photos/procter/8422068552/sizes/o/in/photostream/
+\end{bibliografia}
+
+
+\begin{biografia}{images/mi_articulo/autor.eps}{Ulises Useche} % añadir fotografía tamaño [2.5 cm x 3.3 cm ]
+Estudiante de  la universidad Distrital Francisco José de Caldas, es partícipe del proyecto RadioGLUD y desea empezar a colaborar con la edicion de la revista GLUD Magazine además de crear artículos en el marco del proyecto SIESoL impulsando la revista poniendola dentro de las activades del proyecto Radio GLUD.
+\end{biografia}
+
+\end{multicols} %termina el entorno multicols
+%\eOpage %comienza una pagina nueva
+
+%\rput(7.5,-2.0){\resizebox{10cm}{!}{{\epsfbox{images/mi_articulo/salsilla.eps}}}}
+
+\clearpage
+\pagebreak

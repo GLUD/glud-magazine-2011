@@ -1,0 +1,349 @@
+% Esta obra está bajo una licencia Reconocimiento 2.5 Espańa de Creative
+% Commons. Para ver una copia de esta licencia, visite 
+% http://creativecommons.org/licenses/by/2.5/es/
+% o envie una carta a Creative Commons, 171 Second Street, Suite 300, 
+% San Francisco, California 94105, USA.
+
+% Seccion Introducción
+%
+
+\rput(2.5,-2.3){\resizebox{!}{5.7cm}{{\epsfbox{images/pfipy/Kokopelli.eps}}}}%Imagen de el comienzo de el articulo, coordenadas desde 
+                                                                                   %la parte superior izquierda del margen de la pagina
+
+% -------------------------------------------------
+% Cabecera
+\begin{flushright}
+\msection{introcolor}{black}{0.25}{ENSAYO} %titulo de la sección
+
+\mtitle{10cm}{Programación Funcional en Python} %titulo del articulo 
+
+\msubtitle{8cm}{Un paradigma en nuestro radar} %subtitulo
+
+{\sf por José Javier Vargas Serrato} %autor
+
+{\psset{linecolor=black,linestyle=dotted}\psline(-12,0)}
+\end{flushright}
+
+\vspace{2mm}
+% -------------------------------------------------
+
+\begin{multicols}{2}
+
+
+% Introducción
+\intro{introcolor}{E}{l paradigma funcional aparece como una necesidad a la falencia que proporcionaba el paradigma imperativo 
+en el campo de la  investigación, área como la  inteligencia artificial, pruebas de teoremas, procedimientos de lenguajes naturales,
+se veían muy limitados, dando lugar a los  lenguajes de programación funcionales puros e híbridos.
+python es un lenguaje de programación híbrido que puede proporcionar enfoques dogmáticos a cada uno de estos paradigmas.
+}
+
+% Cuerpo del artículo
+\sectiontext{white}{black}{Programación Funcional} \\ %como se hace una sección
+La programación funcional declarativa pertenece a una clasificación de los paradigmas de programación, 
+Es descritas por las cualidad de implementar  meramente mecanismos de evaluación de expresiones,  
+``en vez de la ejecución de comandos como lo hace la programación imperativa'' por medio de funciones, 
+esto quiere decir que utiliza funciones como factor principal en el tratamiento  computacional, evitando 
+los estados o datos mutable.\\
+Existen lenguajes de programación dedicados  a este paradigma, denominados lenguajes de programación funcional, 
+aquellos que son exclusivos en esta concepción  se les denominan ``funcionales puros'' y son muy implementados en el 
+campo académico y de investigación, sin embargo no quiere decir que no hallan explorado el campo comercial.\\
+Existen varios casos de lenguajes funcionales muy famosos en los que se han implementado en aplicaciones comerciales e industriales, 
+para satisfacer necesidades exclusivas. También lenguajes de uso especifico como SQL han utilizado  elementos y cualidades 
+de la programación funcional para mejor sus procesos. 
+Ahora bien, vemos como algunos lenguajes de programación que no esta diseńados específicamente para la programación funcional,
+están cada vez más implementándola e incorporando capacidades de esta, es el caso de Perl, JavaScript, Python, a estos se les 
+denominan lenguajes funcionales híbridos.\\
+Entre las características que toma Paython de la programación funcional están las Funciones de orden superior o las funciones 
+lambda (funciones anónimas).\\
+Las Funciones de orden se refiere a  la manipulación de defunciones como si fuera un valor cualquiera cualquier, posibilitando 
+que las funciones puedan pasarse como parámetros a otras funciones, devolver funciones como valor de retorno, cualquier sentencia 
+puede convertirse en función, las funciones pueden almacenarse en estructuras de datos.\\
+
+\sectiontext{white}{black}{Phyton y la programación funcional} %como se hace una sección
+Python nos proporcionan unos features o ``característica'' para iterar las funciones al estilo programación funcional (P.F) pero de 
+una manera más fácil. żPor que esto? en la programación funcional no existen construcciones estructuradas como las secuencias y esto 
+obliga a  hacerse con funciones recursivas.\\
+Para no violar el paradigma de programación funcional implementando los bucles típicos del lenguaje imperativo, python nos 
+proporciona estos ``features, funciones o sentencias'' que son equivalentes y son especializadas u orientados para el paradigma P.F.\\
+A continuación hablaremos de estas funcionase que proporciona python; una breve descripciones  y un pequeńo ejemplo para entenderlo.\\
+
+\sectiontext{white}{black}{MAP}\\ %como se hace una sección
+\textit{\textbf{map(funcion1, secuencia[elemento1, elemento2.....])}}\\
+la funciona map aplicara a cada elemento de la secuencia la funcion1, devolviendo una lista con el resultado de cada operación entre la funcion1 
+y el elemento de la secuencia.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def multiply(n):
+  return n * 2
+l1 = [3, 4]
+lr = map(multiply, l1)
+print lr		# imprime [6, 8]
+\end{lstlisting}
+
+\sectiontext{white}{black}{FILTER}\\ %como se hace una sección
+\textit{\textbf{filter(funtion, sequence)}}\\
+la funcion filter verifica que los  elementos de una secuencia cumplan una determinada condición. Devolviendo una secuencia con los elementos que cumplan
+esa condición. Es decir para cada elemento de sequence se aplica la fucion, si el resultado es true se ańade a la lista y en caso contrario se descarta. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ebOpage{introcolor}{0.35}{INTRODUCCIÓN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def esPar(n):
+  return (n % 2 == 0)
+l = [1, 2, 3]
+lr = filter(esPar, l)
+print lr	# imprime [2]
+\end{lstlisting}
+
+la definición anterior de Filter y el ejemplo son extraído del libro \cite{kopka}Python para todos por Raúl Gonzáles Duque.  
+rápidamente notamos que todo depende del valor de retornado por la función definida, esta  función debe retornar datos booleanos,
+de lo contrario Filter no cumplirá con su objetivo..\\
+
+Ejemplo erróneo\\
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def multiply(n):
+  return n * 2
+l1 = [3, 4]
+lr = filter(multiply, l1)                  
+print lr	#imprime [3, 4]
+\end{lstlisting}
+Filter actúa  frente a la respuesta booleana de la función. .\\
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def esPar(n):
+  return True
+l = [1, 2, 3]
+lr = filter(esPar, l)
+print lr	 # imprime [1, 2, 3]
+\end{lstlisting}
+\sectiontext{white}{black}{REDUCE}\\ %como se hace una sección
+\textit{\textbf{Reduce(funtion, sequence[ ])}}\\
+reduce aplica la funtion a pares de elementos de la secuencia hasta operarlos todos.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def resta(x, y):
+  return (x - y)
+l = [15, 15, 7]
+lr = reduce(resta, l)
+print lr 	# imprime -7
+\end{lstlisting}
+
+como podemos ver reduce opera el primer par de elementos de la secuencias en este caso 15-15,
+dando como resultado 0 este cero ahora se opera con el siguiente elemento de de la secuencias, 
+dando como resultado final el -7, ya que entran como ultima iteración en el valor de X el 0 ``cero''
+resultado de la primera iteración en el Y el 7.\\
+
+\sectiontext{white}{black}{FUNCIÓN LAMBDA}\\ %como se hace una sección
+el operador lambda sirve para crear funciones anónimas, esto quiere decir que no tiene nombre y que no se podrán llamar después.\\
+\textit{
+\textbf{Estructura}\\
+\textbf{lambada parametro1, parametro2: cuerpo de la función}}\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+l = [2, 3, 4]
+lr = map(lambda n: n * 2, l)
+print lr 	# imprime [4,6,8]
+\end{lstlisting}
+
+\sectiontext{white}{black}{LIST COMPREBENSIONS }\\ %como se hace una sección
+
+en la versión de python 3000 también llamada python 3.0 o py3k las funcionas map, filter y reduce  
+perderán protagonismo para darle pazo a comprensión de litas.\\
+La compresión de listas es una característica tomada del lenguaje de programación funcional Haskell que esta presente desde python 2,0, esta permite crear listas a partir de otras listas.
+Cada construcción consta de una expresaron que sera la que determine la modificación a cada uno de los elementos de la lista original, seguida de unas clausulas for y opcionalmente una o 
+varias clausulas if.\\
+\textit{\textbf{L2 = [expresión modificadora for CadaElemento in ListaOriginal]}}\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+l = [1, 2, 3]
+l2 = [n + 2 for n in l]
+print l2 	# imprime [3, 4, 5]
+\end{lstlisting}
+esta expresión se leería ``para cada n en l hacer n+2''. Como podemos ver la expresión modificadora es n + 2 , seguido del for,
+el nombre que vamos a utilizar para identificar a cada elemento de la lista Original, el in  y la lista Original que sera la
+que le hacemos las operaciones.\\
+Este resultado puede asignarse a otra lista o a si misma.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+l = [1, 2, 3]
+l = [n + 2 for n in l]
+print l 	# imprime [3, 4, 5]
+\end{lstlisting}
+otro ejemplo en el implementamos el if.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+l = [2, 3, 4, 5]
+lr = [n for n in l if n % 2 == 0]
+print lr	# imprimir [2, 4]
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ebOpage{introcolor}{0.35}{INTRODUCCIÓN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Otro ejemplo en que implementamos varios for.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+l = [0, 1, 2, 3]
+m = ["a", "b"]
+
+lr = [s * v for s in m
+	     for v in l
+	     if v > 0
+       ]
+# imprime ['a', 'aa', 'aaa', 'b', 'bb', 'bbb']
+print lr 
+
+# totalmente equivalentes
+
+lr2 = []
+for s in m:
+  for v in l:
+    if v > 0:
+      lr2.append(s * v)
+      
+# imprime ['a', 'aa', 'aaa', 'b', 'bb', 'bbb']
+print lr2 
+\end{lstlisting}
+
+
+\sectiontext{white}{black}{GENERADOR}\\ %sección
+esta expresión generador  funciona de forma muy parecida a las comprensión de lista y su sintaxis es la misma excepto que no se utiliza
+paréntesis ``()'' sino corchetes ``[]''. su gran diferencia es que no devuelve una lista como en el caso de la comprensión de lista  sino 
+un generador.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+l = [1, 2, 3]
+lr1 = [n + 2 for n in l]
+print lr1	   # imprime [3, 4, 5]
+lr2 = (n + 2 for n in l)
+# imprime 
+#<generator object <genexpr> at 0x7f1c78b6e7d0>
+print lr2	
+\end{lstlisting}
+
+En caso de utilizare en una función para retornarlo se utiliza yield en vez de return.\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def generador(n):
+  yield n + 1
+  
+#imprime 
+#<generator object generador at 0x7ffc0b23a7d0>
+print generador(2)           
+\end{lstlisting}
+
+Entonces que extraordinarias propiedades otorga Generador.?\\
+
+\lstset{language=Python,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+\begin{lstlisting}
+def mi_generador(n, m, s):
+  while(n <= m):
+    yield n
+    n += s
+
+x = mi_generador(0, 5, 2)
+
+# imprime 
+#<generator object mi_generador at 0x7f710e1b67d0>
+print x 
+
+for i in x:
+  print i		# imprime de 0 a 4
+
+for n in mi_generador(0, 5, 2):
+  print n		# imprime de 0 a 4         
+\end{lstlisting}
+
+Que esta sucediendo aquí? El generador solo crea un solo valor cada vez  que se necesite. Optimizando
+la memoria, caso contrario sucede con las listas que se crea toda su composición en memoria.\\
+
+\cite{kopka} \textit{La idea de los Generador se basa en dos conceptos: los iteradores y la evaluación perezosa.
+En un FOR Por debajo, el intérprete lo que hace es crear un iterador mediante el método iter() y avanzar posiciones con el método next() del iterador devuelto.
+La evaluación perezosa (lazy evaluation), dice que una expresión se resuelve únicamente cuando se la necesita, no antes.
+Uniendo ambos conceptos tenemos el generador: una estructura, sobre la que podemos iterar, cuyos componentes se van obteniendo según se va avanzando.
+La diferencia fundamental con la lista, es que la lista tiene una evaluación ansiosa/codiciosa(eager evaluation). Esto implica que cuando queremos manejar una 
+lista de 10 elementos la lista necesita disponer de esos 10 elementos en el momento de su declaración. Sin embargo el generador solamente necesita saber cómo 
+generar el siguiente valor por lo que no necesita ni reservar espacio ni conocer a priori ningún elemento.}\\
+
+El paradigma de programación funcional no es la panacea, incluso ningún paradigmas lo es, veo que la riqueza de cada uno de 
+ellos es que proporciona criterios teóricos y prácticos  para atacar a un problema frente a unas necesidades especificas y 
+obtener  un mejor manipulación de la información y mayor efectividad para obtener los resultados deseados..\\
+
+Existen muchos paradigmas de programación, pero ninguno predomina en los desarrollos, precisamente porque los requerimientos de cada
+uno de ellos van orientados a diferentes necesidades, y es de cada paradigma proporcionar soluciones adecuadas con un  modelo coherente
+, flexible y reutilizable.\\
+
+El lenguaje python no nos impide fusionar el paradigma funcional e imperativo, pero esto nos dará un desarrollo en el cual no 
+obtendremos los beneficios de ninguno, ya que las cualidades intrínsecas son excluyentes; Me explico ?lo que hace fuerte a la una es
+por no actuar diferente a la otra y viceversa?.\\
+
+A la hora de decidir que paradigmas implementar en la elaboración de desarrollo, lo mas adecuado es incluir en el equipo 
+de trabajo personal con talento y experiencia en modelo de negocio, mas que en las mismas tecnologías, ya que este conocimiento
+proporcionara la base fundamental para elegir que paradigmas proporcionan mayor efectividad para el sistema.\\
+
+Cuando implementemos algún paradigmas de programación, es de vital importancia no estructurarnos hacer lo que ellas dicten 
+al pie de la letra, ya que podría llegar a convertirse en un arma de doble filo, y combatir nuestro desarrollo en un trabajo tedioso,
+es mas una tarea de diversión y creatividad, analizar la mejor manera en que dicho paradigma pueda proporcionarle mejor 
+funcionalidad a nuestro sistema; aunque siempre existe la barrera de implementar Vs tiempos de cumplimiento.\\
+
+
+\bibliographystyle{abbrv}
+\begin{bibliografia}
+\bibitem{kopka}
+Raúl Gonzáles Duque, 
+\emph{Python para todos}, 
+\hskip 1em plus 0.5em minus 0.4em
+\relax Disponible en: http://mundogeek.net/tutorial-python/ 
+
+\bibitem{kopka1}Hernando, Carlos. (jue 01 septiembre 2011).
+\emph{chernando.eu. Recuperado el 14 de Febrero de 2013}
+\hskip 1em plus 0.5em minus 0.4em
+\relax Disponible en: http://chernando.eu/python/python-generators/
+
+\bibitem{kopka2}Web Document
+\emph{}
+\hskip 1em plus 0.5em minus 0.4em
+\relax Disponible en: http://sinusoid.es/python-avanzado/slides/tema-01.pdf
+
+\bibitem{kopka3}Web Document
+\emph{Departamento de Electrónica, sistema informático y automática Universidad de Huelva}
+\hskip 1em plus 0.5em minus 0.4em
+\relax Disponible en: https://we.riseup.net/assets/68470/progFuncional-Slides.pdf
+
+\bibitem{kopka4}Web Document
+\emph{Rivadera, Gustabo Ramiro(cuadernos de la facultad n 3, 2008)}
+\hskip 1em plus 0.5em minus 0.4em
+\relax Disponible en: http://www.ucasal.net/templates/unid-academicas/ingenieria/apps/3-p63-Rivadera.pdf
+  
+\end{bibliografia}
+
+
+\begin{biografia}{images/pfipy/jota.eps}{José Javier Vargas Serrato} % ańadir fotografía tamańo [2.5 cm x 3.3 cm ]
+Estudiante de Ingeniería de Systemas en la universidad Distrital Francisco José de Caldas, 
+es activista del movimiento del software libre.
+En la actualidad se desenpeńa como miembros activos del GLUD (Grupo GNU/Linux de la Universidad Distrital
+Francisco José de Caldas), es participe de el proyecto  \textbf{Equidna \textit{La belleza de Python}} y desea empezar a colaborar con la edicion de la revista GLUD 
+Magazine.  
+\end{biografia}
+
+\end{multicols} %termina el entorno multicols
+%\eOpage %comienza una pagina nueva
+
+%\rput(7.5,-2.0){\resizebox{10cm}{!}{{\epsfbox{images/mi_articulo/salsilla.eps}}}}
+
+\clearpage
+\pagebreak

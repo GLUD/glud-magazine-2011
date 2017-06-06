@@ -1,0 +1,16 @@
+GLUD Magazine NĂşmero 1 
+
+1. Extraer el archivo tar.gz
+2. Para poder compilar la revista instale los siguientes paquetes
+
+    -kile 2.1-1
+    -latex-epic
+    -texlive-bibtexextra 
+    -texlive-bin 
+    -texlive-core 2010.20288-1 
+    -texlive-fontsextra 2010.19878-2
+    -texlive-htmlxml 2010.19804-1
+    -texlive-latexextra 2010.19882-1
+    -texlive-pstricks 2011.22586-1 
+    
+3. Leer el README.

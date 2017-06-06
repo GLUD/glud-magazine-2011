@@ -1,0 +1,191 @@
+% Esta obra está bajo una licencia Reconocimiento 2.5 Espańa de Creative
+% Commons. Para ver una copia de esta licencia, visite 
+% http://creativecommons.org/licenses/by/2.5/es/
+% o envie una carta a Creative Commons, 171 Second Street, Suite 300, 
+% San Francisco, California 94105, USA.
+
+% Seccion Introducción
+%
+
+\rput(2.5,-2.3){\resizebox{!}{5.7cm}{{\epsfbox{images/mi_articulo/Kokopelli.eps}}}}%Imagen de el comienzo de el articulo, coordenadas desde 
+                                                                                   %la parte superior izquierda del margen de la pagina
+
+% -------------------------------------------------
+% Cabecera
+\begin{flushright}
+\msection{introcolor}{black}{0.25}{ENSAYO} %titulo de la sección
+
+\mtitle{10cm}{Libertad, realidad o ilusión} %titulo del articulo 
+
+\msubtitle{8cm}{Libertad de la información en Colombia} %subtitulo
+
+{\sf por List Cabanzo Ivan Alejandro} %autor
+
+{\psset{linecolor=black,linestyle=dotted}\psline(-12,0)}
+\end{flushright}
+
+\vspace{2mm}
+% -------------------------------------------------
+
+\begin{multicols}{2}
+
+
+% Introducción
+\intro{introcolor}{D}{esde pequeńos, queremos saber todo acerca del mundo 
+que nos rodea, żCómo funciona esto?, żQué es aquello?, żPor qué sucede esto?...  
+y con el tiempo vamos accediendo al limitado conocimiento que nos brindan, 
+desde el colegio hasta el trabajo, siempre se aprende algo nuevo, muchas
+personas se quedan con la idea  que obtuvieron  por sus superiores, 
+los medios de comunicación, algún amigo o familiar, no es de muchos introducirse
+en un tema y saciarse con todo lo que ha aprendido, causando que la censura
+sea un acto indiferente, de hecho, desconocido.
+}
+
+\vspace{2mm}
+
+% Cuerpo del artículo
+
+Nuestro país, abundante de sabiduría y tradiciones generadas por antepasados, se ha dejado
+llevar por falsas promesas, cegados por falsas informaciones que dan en los medios y
+la indiferencia de quienes saben la verdad, se podría  declarar una Colombia parcialmente censurada.
+Cuando un colombiano promedio observa alguna oposición en contra de alguna Ley mal hecha,
+lo primero que piensa es en él mismo, - Ąpara que hacer ello si nada logramos!, 
+- Ąlo único que ellos hacen es perturbar la tranquilidad!, - Ąotro trancón más! , 
+basándose en lo poco informado que esta dicha persona, el statu quo (todo esta bien, no pongas atención) 
+impide saber que esta pasando en realidad.\\
+
+Afortunadamente, no todas las personas se limitan a este tipo de información, una verdad a medias no 
+aporta nada, el estudio y ardúo esfuerzo de varias comunidades, ha permitido continuar con la poca
+libertad que hay en internet, y digo poca porque muchas paginas importantes se encuentran bloqueadas por
+las ISP, y, aunque los autoritarios en Colombia no son muy competentes tienen claro su objetivo; dentro de
+todas esas comunidades, me enfocaré en una en especial, aquella que nació gracias a la colaboración y el
+trabajo mutuo, que permite que internet exista, aquella comunidad que no vive entre las sombras como
+muchos creen: los hackers, los verdaderos, no los vándalos ni bandidos, son aquellos que son muy buenos
+en lo que hacen, ellos hicieron de internet su herramienta más valiosa.\\
+
+
+
+\begin{entradilla} %codigo para una entradilla
+{\em {\color{introcolor}{Los Auténticos Programadores}} llamados así en su inicio, provenían
+habitualmente de disciplinas como la ingeniería o la física y con frecuencia se trataba de radioaficionados.\cite{kopka1}}
+\end{entradilla}
+
+\sectiontext{white}{black}{Las malas leyes} %como se hace una sección
+
+La información tiene valor, todo tiene un precio ? si bien puede ser cierto o no, quienes controlan el tipo 
+de información que se publica en nuestro país tienen claro este concepto, existen ciertos datos que pueden 
+llegar a ser ?perjudiciales? pero no precisamente para nosotros, por ello se ha intervenido en la radio, la
+televisión y la prensa; el Internet en cambio se ha mantenido relativamente  de pie, y  digo relativamente por
+que a pesar de tener acceso a datos importantes, que dan paso a la libertad de expresión, poco a poco se van
+privatizando con leyes como SOPA, PIPA, ACTA o la misma Ley Lleras, financiadas por corporaciones 
+para satisfacer sus ?proyectos? para controlar Internet.\\
+
+El Internet no puede tener un dueńo, desde sus inicios como ArpaNet se pensó como una herramienta para compartir 
+el saber,(independientemente de su uso) pese a su noble creación, entes (que a partir de ahora los llamaré como autoritarios) 
+quieren poner precio sobre el contenido que circula por la red de redes, ocultar todo lo que le perjudique,
+saber todo absolutamente de todos; En ese sentido, la poca libertad que tenemos se quiere exterminar, 
+żpuedo sentirme libre sabiendo que estoy siendo vigilado todo el tiempo o se me esté negando información útil? Muy seguramente 
+la respuesta será negativa, a nadie le gusta ser sometido a espionaje (lo privado es mio y solo mio),  y tenemos derecho a 
+saber la verdad. sin embargo, no se puede negar que existen ciertos contenidos  que deben publicarse con restricciones, 
+(libertad no tes igual a libertinaje). \\
+
+Los autoritarios prosperan en la censura y el secreto. Y desconfían de la cooperación voluntaria y del intercambio de información
+?sólo les agrada la cooperación que tienen bajo su control. La libertad es buena, los nińos necesitan guía, y los criminales,
+restricciones; por tanto se puede estar de acuerdo en aceptar algún tipo de autoridad.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ebOpage{introcolor}{0.35}{INTRODUCCIÓN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectiontext{white}{black}{Las salidas de la censura} %sección
+
+
+% A continuación un ejemplo de como se puede hacer una entradilla de código en 
+% lenguaje C, de parte de los amigos de occam's razor.
+
+%\lstset{language=C,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+%\begin{lstlisting}
+%#include <osgDB/ReadFile>
+%#include <osgViewer/Viewer>
+%
+%using namespace osgDB;
+%int main(int ac, char **a)
+%{
+%  osgViewer::Viewer viewer;
+%  viewer.setSceneData(readNodeFile(a[1]));
+%
+%  return viewer.run();
+%}
+%\end{lstlisting}
+
+Dejar ese pensamiento individualista es un paso bastante grande, se esta atacando su libertad, mi libertad,
+la libertad de todos los que te rodean, ser indiferente es apoyar (sin saberlo) al dominio del contenido de Internet;
+hacktivistas siempre demuestran su esfuerzo en contra de ello, pero la mayoría no son ?crakers?, ni delincuentes,
+son personas que están cocientes  de esta situación, no necesito una mascara para estar en contra de estas acciones,
+infórmate bien, no te quedes con lo poco que te dan, despierta ese interés que se ha perdido de pequeńo,
+siempre habrá algo más que aprender.
+
+
+
+
+
+
+
+% A continuación un ejemplo de como se puede hacer una entradilla de código en 
+% lenguaje Make, de parte de los amigos de occam's razor.
+
+
+%\lstset{language=Make,frame=tb,framesep=5pt,basicstyle=\footnotesize}   
+%\begin{lstlisting}
+%MY_CFLAGS=-I${DEV_DIR}/include
+%MY_OSG_LIBS=-L${DEV_DIR}/lib -losgViewer
+%
+%mini: mini-viewer.cpp
+%	g++ -o $@ $< ${MY_CFLAGS} ${MY_OSG_LIBS}
+%\end{lstlisting}
+
+\sectiontext{white}{black}{LA REALIZACIÓN}
+
+Ejemplo de una tabla\\
+
+\begin{tabular}{|>{\columncolor{encabezado}} c |>{\columncolor{introcolor}} c |>{\columncolor{introcolor}} c |>{\columncolor{introcolor}} c |>{\columncolor{introcolor}} c |}
+\hline
+\multicolumn{5}{|>{\columncolor{encabezado}}c|}{multicolumna 1-2}\\
+\hline
+\rowcolor{encabezado}Col 1 & Col 2 & Col 3 & Col 4 & Col 5 \\
+\hline
+rgb & cmyk & gray & predefinido & definido\\ \hline
+\end{tabular}
+
+Para que la libertad florezca, el Internet debe mantenerse libre del control gubernamental y  corporativo;
+Pero como hemos visto con la DMCA, las corporaciones que quieren controlar la red tienen que hacerlo mediante
+la compra de malas leyes del gobierno (En Colombia la Ley Lleras), por tanto, el frente más importante en la 
+batalla sigue siendo la partida de malas leyes y reglamentos.
+
+
+\bibliographystyle{abbrv}
+\begin{bibliografia}
+\bibitem{kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{kopka1}
+A.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{kopka2}
+B.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\end{bibliografia}
+
+
+\begin{biografia}{images/mi_articulo/autor.eps}{Iván Alejandro List Cabanzo} % ańadir fotografía tamańo [2.5 cm x 3.3 cm ]
+Futuro desarrollador de software libre, Hoy estudiante de la Universidad Distrital, la curiosidad es algo que nunca me falta sobre todo a la hora de hablar de informática, apasionado a la seguridad informática desde pequeńo, seguidor de la filosofía GNU/Linux. El único limite del ser humano es su imaginación
+\end{biografia}
+
+\end{multicols} %termina el entorno multicols
+%\eOpage %comienza una pagina nueva
+
+%\rput(7.5,-2.0){\resizebox{10cm}{!}{{\epsfbox{images/mi_articulo/salsilla.eps}}}}
+
+\clearpage
+\pagebreak

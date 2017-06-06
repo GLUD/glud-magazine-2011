@@ -1,0 +1,448 @@
+% Esta obra está bajo una licencia Reconocimiento Compartir Igual 3 de Creative
+% Commons. Para ver una copia de esta licencia, visite 
+% http://creativecommons.org/licenses/by-sa/3.0/es/
+
+% Seccion Introducción
+%
+\definecolor{filacolor}{HTML}{E33D00}
+\definecolor{columnacolor}{HTML}{E65B05}
+\rput(2.5,-2.3){\resizebox{!}{5.7cm}{{\epsfbox{images/radioglud/entrada.eps}}}}%Imagen de el comienzo de el articulo, coordenadas desde 
+                                                                                   %la parte superior izquierda del margen de la pagina
+
+% -------------------------------------------------
+% Cabecera
+\begin{flushright}
+\msection{introcolor}{black}{0.25}{Tecnologías Libres} %titulo de la sección
+
+\mtitle{10cm}{Emisora en línea con Tecnologías Libres} %titulo del articulo 
+
+\msubtitle{8cm}{Todo lo que necesito saber} %subtitulo
+
+{\sf por Jorge Ulises Useche Cuellar} %autor
+
+{\psset{linecolor=black,linestyle=dotted}\psline(-12,0)}
+\end{flushright}
+
+\vspace{2mm}
+% -------------------------------------------------
+
+\begin{multicols}{2}
+
+
+% Introducción
+\intro{introcolor}{E}{n nuestra sociedad la radio hace aún parte importante de nuestras vidas; tal vez escuchada más por personas que han venido envejeciendo con estos medios y desplazada por el Internet una nueva forma más eficiente de obtener información de todo tipo sin necesidad de publicidad ni cosas innecesarias porque siempre hay muchas opciones de donde escoger. 
+
+Es necesario recuperar la calidez humana que nos brinda escuchar la información de otra persona, imaginar de cierta forma y creer en un mundo que es generado solo por una voz; aprovechar el Internet para que la gente de distintos rincones accedan a la información y a los pensamientos que queremos compartir.
+El espíritu de compartir se ve truncado en veces por no acceder a las tecnologías por ser muy caras y ahí es donde entra el software libre a permitirnos compartir lo que queramos, y para la intensión anterior existe un conjunto de herramientas que permitirán que tengamos nuestra propia emisora en Internet o netradio, muy fácil de manejar y gratuita.
+}
+
+\vspace{2mm}
+
+% Cuerpo del artículo
+Siempre es mejor confiar en la estabilidad de un sistema GNU/Linux que en la de otros sistemas operativos; para este fin se recomienda ampliamente utilizar una distribución como Debian GNU/Linux o algo aún más libre como Trisquel GNU/Linux ya que nos ofrece paquetes de excelente calidad y muy estables. Por esta razón aparte de la cuestión moral de que sea libre, únicamente se utilizará tecnologías y contenidos libre que cumpla las 4 libertades del software según Richard Stallman adaptadas al tipo de contenido. La creación del sistema para la emisora en Internet se abordará con el siguiente método:\\
+
+ 1. żPor qué una radio en línea?\\
+ 2. Conceptos generales sobre servicios o demonios en GNU/Linux\\
+ 3. Terminología usada en la transmisión de medios\\
+ 4. Piezas de software usadas\\
+ 5. Alternativas para emisión de audio y ventajas y desventajas de éstas\\
+ 6. żQué música puedo poner?, licencias asociadas\\
+ 7. Ilustración general del método usado en Radio GLUD\\
+ 8. Instrucciones para la primera emisión en una red local\\
+
+Con esto claro se entienden ya los alcances de este escrito y se quiere dejar en claro, que para entender lo que se hace para crear la emisora en línea es necesario que se expliquen los conceptos relacionados y la razón de todo lo que hallamos tenido que decidir, para que entendiendo esto se pueda automatizar procesos o mejorar la forma en que se hicieron, de lo contrario el artículo que convertiría en un tutorial más.
+
+\begin{entradilla} %codigo para una entradilla
+{\em {\color{introcolor}{Radio GLUD}} \\ Libertad para tus oídos.}
+\end{entradilla}
+
+Antes de desarrollar los contenidos, me parece necesario decir porque se cree tener el criterio necesario para escribir este artículo. Desde hace un tiempo existe la emisora en línea del GLUD, esta emisora se llama ``Radio GLUD'', y desde sus comienzos ha dado valioso conocimiento a todo el grupo con el cual se han solucionado algunos problemas con soluciones definitivas o parciales en que a pesar de todo el trabajo invertido hasta ahora, todavía falta un camino largo por recorrer para acercarla lo más posible a lo que puedan imaginar nuestras mentes.
+La invitación cordial va a que visiten el sitio web de este proyecto \url{http://glud.udistrital.edu.co/radioglud}
+
+\sectiontext{white}{black}{żPor qué una radio en línea?}
+
+Es una pregunta que se hizo a su debido momento, por lo general se presentan muchas cosas a favor y otras en contra, pero las razones más valiosas que se encontraron fueron positivas y más enfocadas en {\em impacto social} que en cuestiones técnicas. La madre de todas es el poder social que se presenta cuando las personas comparten algo, pero żcuál era el medio correcto para compartir?; la radio es nuestro ancestro más cercano (para comunicarnos), todavía vivo, más interesante y nos ofrece las siguientes ventajas derivadas del poder social.
+
+El primero de ellos es {\em el sentido de comunidad}, que se crea cuando muchas personas trabajan por una misma causa y es conocido que es mucho mas fácil hacer un programa radial que uno televisivo; el segundo es {\em compartir ideas y sentimientos}, que se ha visto mucho en otras radio, pero żrealmente son las que nos interesan en la comunidad académica?; la tercera es {\em las experiencias que se adquieren}, no puede ser solo libros, pueden haber otros espacios de esparcimiento muy provechosos; el cuarto es {\em compartir gustos musicales}, que hace que estemos más unidos, o żquién no ha cantado una canción que a todo mundo le gusta con un grupo de amigos?; y la última, {\em la creatividad como reflejo de sociedad}, tenemos derecho a expresarnos y nos volvemos más creativos (A mi parecer) solo mostrando nuestra voz que nuestros rostros.
+\ebOpage{introcolor}{0.35}{Tecnologías Libres}%final de pagina 1
+
+\sectiontext{white}{black}{Conceptos generales sobre servicios o demonios en GNU/Linux} %como se hace una sección
+
+Primero abarcaré la forma en que el sistema operativo gestiona programas como icecast (ver sección Piezas de software usadas). Dicho programa se gestiona como un servicio (daemon en sistemas unix) donde la principal caracteristica es que es un programa que es persistente con una ejecución continua, se ejecuta en segundo plano y no posee una interfaz de usuario directa o shell.
+
+Disk And Execution MONitor es lo que significa DAEMON; ``según una investigación realizada por Richard Steinberg, la palabra fue utilizada en 1963 por primera vez, en el área de la informática, para denominar a un proceso que realizaba backups en unas cintas, este proceso se utilizó en el proyecto MAC del MIT y en una computadora IBM 7094,1 dicho proyecto estaba liderado por Fernando J. Corbató, quien afirma que se basó en el demonio de James Maxwell''\cite {ref1}
+
+Hay dos formas de iniciar un servicio si éste no se encuentra activo, la primera es ejecutando el programa relacionado con los parámetros para iniciarlo como daemon que indique el manual y la segunda es por medio de un mediador como service (programa en shell) que facilita la tarea ya que no hay que recordar la ruta ni el comando de ejecución del servicio.
+
+\sectiontext{white}{black}{Terminología usada en la transmisión de medios} %sección
+
+La transmisión de medios específicamente de audio, representa la acción esencial del proceso de crear una emisora, hay que tener claro que el proceso no es más que el streaming de audio que posee una interfaz web para poder escucharlo cómodamente.
+
+\begin{center}
+\resizebox{8cm}{!}{{\epsfbox{images/radioglud/mov-dat-mult.eps}}}
+\mycaption{Gráfico del movimiento de los datos multimedia desde la generación del fuente hasta que lo escucha el usuario o oyente de la radio o canal de vídeo}
+\end{center}
+
+El streaming (que se refiere a corriente continua) es la distribución de contenido multimedia a través de una red de computadores con la ventaja de que por medio de un búfer de datos se agrega la posibilidad de disfrutar el contenido mientras este descarga; el componente búfer de datos en este caso es un espacio de memoria que almacena datos para evitar que la reproducción del medio se quede sin información durante la transferencia.
+
+Latencia (relay - retardo del reloj) es el tiempo o retardos temporales en que se realiza un proceso o procesos (o en su defecto ninguno) debido por lo general al tiempo de propagación de los circuitos o incluso al tiempo en que se estabiliza que es debido a la densidad del material y la temperatura principalmente.
+
+\begin{center}
+\resizebox{8cm}{!}{{\epsfbox{images/radioglud/latencia.eps}}}
+\mycaption{Gráfico de un sistema intermedio (sistema 2) donde se muestra que existe un tiempo desde que los datos entran hasta que salen del sistema y los causales posibles de ese Delta}
+\end{center}
+
+\begin{center}
+\resizebox{8cm}{!}{{\epsfbox{images/radioglud/propagacion.eps}}}
+\mycaption{Gráfico de los tiempos de propagación de un sistema, comenzando con el tiempo de propagación de bajo a alto (tplh) y terminando su respuesta con el tiempo de propagación de alto a bajo (tphl)}
+\end{center}
+
+El tiempo real (Real Time - RT), se presenta esta referencia para todos los sistemas en donde hay que considerar que ese tiempo real no tiene que ser necesariamente sinónimo de rapidez o inmediatez; como concepto, dicho tiempo es la latencia suficiente para que el sistema pueda resolver el problema para el cual está dedicado. Para el caso del audio en informática existe un tiempo de respuesta crítico con un porcentaje que no exceda el 3\% (aunque por lo general es así con todos los sistemas RT) que para llevarse a cabo necesita algunos componentes esenciales como un sistema operativo (OS) que soporte el tiempo real (para el caso de un sitema GNU/Linux solo sería el kernel) y un software diseńado para esto (el mismo OS RT ofrece un marco para el desarrollo de dichas aplicaciones).
+
+Hay que distinguir entre 2 tipos de sistemas RT, los pasivos y los activos donde la diferencia es el dańo o fallo que puede causar un retraso en la seńal; por ejemplo tenemos que un sistema de audio o vídeo en directo sería un sistema RT pasivo debido a que un retraso en la seńal simplemente será un retraso en la visibilidad del vídeo o escucha del audio tal vez con desmejora del multimedia pero luego seguirá funcionando normal como si nada hubiera pasado y un ejemplo de un sistema RT activo son la mayoría de sistemas médicos (como el marcador de pasos artificiales o
+\ebOpage{introcolor}{0.35}{Tecnologías Libres}%final de pagina 2
+marcapasos) donde un retraso de la seńal puede causar el fallo del entorno donde el sistema interfiere causando una desmejora apreciable del paciente o incluso la muerte.
+
+El servidor de sonido para streaming es un software con la función de gestionar los flujos de datos 
+reproduciendo las muestras. Cualquier programa reproductor, grabador, gestor de audio, necesita soporte para trabajar con un determinado servidor de audio por ejemplo Jack Audio Connection Kit (en adelante simplemente JACK) es uno de los más conocidos para flujos en tiempo real.
+
+El servidor de streaming de medios es un sistema de distribución de multimedia por streaming que utiliza un tipo de formato y un protocolo determinados para realizar el proceso de distribución de contenidos multimedia, para el caso de icecast el formato puede ser ogg, webm, aac o mp3 y el protocolo http o https.
+
+El flujo multimedia se refiere al audio o al vídeo que es enviado desde un punto de la red hasta otro. Este flujo debe ser continuo aunque no necesariamente estable (fluctuante), pero debe tener un mínimo de velocidad de transferencia de un punto a otro para que el streaming sea efectivo, hay que introducir entonces algunos conceptos relacionados a las propiedades intrínsecas del archivo multimedia que se quiere enviar por streaming para estimar esa velocidad mínima que debe tener la red. Hay que tener en cuenta que cualquier archivo multimedia (audio y/o vídeo) posee un bitrate, que es la cantidad de bits que posee el flujo en unidad de tiempo, y que obedece a la composición del archivo, se mide por lo general en kbps (kilo bit por segundo).
+
+También es importante conocer el término multi-bitrate que surgió de la necesidad de enviar una fuente multimedia a diferentes calidades, por ejemplo una calidad HD, normal y móvil; para cada una de estas es necesario un bitrate distinto para que el usuario pueda consumirlo de acuerdo a sus necesidades o limitación de ancho de banda de su conexión.
+
+Ya que introducimos los bitrates y las velocidades de conexión de la red, es necesario entrar un poco a hacer el análisis de requerimientos de ancho de banda. Cuando queremos enviar un flujo multimedia desde nuestro computador hasta un servidor de streaming es pertinente revisar la velocidad de conexión (de subida) a este servidor para enviar nuestro flujo o flujos; para llevar a cabo este análisis es necesario realizar  un test de velocidad o Speed Test para saber nuestra velocidad real de conexión; hay que tener en cuenta que pueden presentarse fluctuaciones inesperadas en esa velocidad máxima por lo tanto es recomendable enviar flujos con bitrates que sumados estén dentro del rango de un 50\% a un 70\% de la capacidad total, una vez tengamos el dato podemos saber cuantos flujos y de que calidades podemos enviar a el servidor; por ejemplo si nuestra conexión es de 512 kbps se deben hacer los cálculos sobre la base de 358,4 kbps que es el 70\% de la conexión, con esto se puede enviar audio con bitrates de 256 kbps y 64 kbps sin mucho problema.
+
+Source Stream (fuente) es entendido como la fuente de audio (o vídeo) de donde se obtienen los datos para despues distribuirlos en la red en forma de streaming, este fuente se genera desde un cliente como ices o idjc de los que se hablará más adelante.
+
+Mount Point (Punto de Montaje) es una ruta por la cual se puede acceder a determinado streaming, debe ser configurada en el servidor de streaming, un ejemplo de un punto de montaje es ``/radioglud.ogg'' y para acceder a él desde un navegador web o un reproductor de audio la dirección se escribe de la forma http://ip:puerto/radioglud.ogg, no hay que preocuparse si no se ha entendido del todo ya que al hacer nuestro proceso de streaming en localhost el concepto llega sin mucho esfuerzo.
+
+También vale la pena saber algunos conceptos de envío de información conocidas como {\em formas de transmisión de información} en una red, en lo que se consideran 3 como los principales conceptos, hay que decir que existen más pero éstos son los más relevantes y usados, el primero es {\em unicast} que consiste en que se envía la información uno a uno, donde obtiene la información el que lo necesita a través de requerimientos; el siguiente es {\em multicast} que necesita un rango de IPs ya reglamentado (conocidas como tipo D) para enviar simultáneamente los datos a todos los destinos escogidos a los que se les conoce como grupo multidifusión, no necesita enviar la información a cada destino por petición, sino que realiza una única transmisión de los fuentes a cada uno de los destinos y por eso no necesita una red con gran velocidad para realizar las transferencias; y el último de los tres es la forma {\em broadcast} que es parecido al anterior con la diferencia que se envía los datos a todos los puntos de la red o subred simultáneamente.
+
+Icecast es unicast y hasta donde conozco no tiene soporte multicast, uno de los indicios principales para esta conclusión es el protocolo HTTP (Protocolo de Transferencia de HiperTexto) que es TCP (Protocolo de Control de Transmisión) con el que icecast distribuye el streaming, además de que supongo que como he leído desde hace un tiempo a pesar de que la multidifusión tiene muchas ventajas sobre el bandwidth (ancho de banda de la conexión de Internet) su tráfico es realmente complejo además de que su implementación a gran escala produce puntos de fallos que pueden ser utilizados para ataques de denegación de servicios. Como dato adicional solo los protocolos diseńados específicamente para trabajar con multicast son efectivos para su implementación y la mayoría de las aplicaciones conocidas lo hacen por UDP (Protocolo de Datagrama de Usuario).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ebOpage{introcolor}{0.35}{INTRODUCCIÓN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\rput(7.5,-2.0){\resizebox{10cm}{!}{{\epsfbox{images/radioglud/salsilla.eps}}}}
+
+\begin{entradilla} %codigo para una entradilla
+{\em {\color{introcolor}{Poder Social}} se presenta cuando las personas comparten.}
+\end{entradilla}
+
+\sectiontext{white}{black}{Piezas de software usadas}
+A continuación se listan las aplicaciones que se han usado en Radio GLUD a través de su desarrollo, más adelante se dirá cuales de estas se usan actualmente.
+
+\begin{itemize}
+\item JACK: Es un servidor de sonido (daemon) de baja latencia, GNU GPL
+\end{itemize}
+\ebOpage{introcolor}{0.35}{Tecnologías Libres}%final de pagina 3
+\begin{itemize}
+\item Icecast: Es un proyecto y a la vez un programa servidor de streaming de medios, creado por la Xiph.Org Foundation, su propósito es crear un flujo de medios para una estación de radio, jukebox privado (rockola) y otros, a partir de un source client, GNU GPL v2
+\item Ices: Es un programa generador de fuentes (source client) para un servidor de streaming, su propósito es generar un flujo de audio (stream) para el servidor de streaming del proyecto ICECAST, GNU GPL
+\item IDJC: Cliente generador de fuentes para un servidor de streaming, es mucho más versátil que ices ya que permite mezclar distintos flujos de audio, provenientes de cualquier dispositivo o programa (incluso de si mismo) que pueden estar gestionados principalmente por el servidor de audio local. Su función es principalmente servir de estudio de audio casero, GNU GPL v2
+\item QjackCtl: Es una aplicación QT, que nos da la posibilidad de controlar algunos parámetros de JACK (audio server daemon) de una forma simple y gráfica, GNU GPL v2
+\item JACK Rack: Es un programa con un conjunto de efectos para JACK a traves de complementos (plugins) su procesamiento del audio es a baja latencia, GNU GPL
+\item JAMin: Es una interfaz muy poderosa de compresión y ecualización de audio, GNU GPL
+\item Liquidsoap:  Es un lenguaje de programación de audio para generar source streams, al ser un interprete con un lenguaje script dedicado la versatilidad y la adaptabilidad lo hace lo suficientemente poderoso para acomodarse a cualquier emisora, por complejo que se quiera realizar el(los) source stream(s), GNU GPL
+\item jme (jmediaelement): Es una aplicación web, reproductor de audio y vídeo a través de elementos de HTML5.
+\item Otras aplicaciones de audio muy útiles en \url{http://jackaudio.org/applications}
+\end{itemize}
+
+\begin{entradilla} %codigo para una entradilla
+{\em {\color{introcolor}{Jack Audio Connection Kit}} multiplataforma y lo mejor que el software libre ha podido hacer por el mundo de la música.}
+\end{entradilla}
+
+\sectiontext{white}{black}{Alternativas para emisión de audio y ventajas y desventajas de estas}
+
+Son muchas las aplicaciones que se utilizan en el entorno comercial para la emisión de medios, aunque contamos con pocas opciones de software libre, todas son de gran calidad y muy estables. Se listan las alternativas privativas que conozco como para dar ciertas observaciones al respecto, las que no conozco debido a que nunca las he usado, ni escuchado, ni desearía hacerlo aparecen con un ``--''.
+
+\begin{center}
+\begin{tablehere}
+\begin{tabular}{|>{\columncolor{columnacolor}} c |>{\columncolor{columnacolor}} c |}
+\hline
+\multicolumn{2}{|>{\columncolor{filacolor}}c|}{Semi-equivalentes entre software libre y privativo}\\
+\hline
+\rowcolor{filacolor}Alternativa libre & Alternativa privativa \\ \hline 
+Icecast & SHOUTcast\\ \hline
+Icecast & oddcast o edcast\\ \hline
+Ices, Darkice & Winamp, VLC\\ \hline
+IDJC & Winamp, Zararadio\\ \hline
+QjackCtl & --\\ \hline
+JACK Rack & --\\ \hline
+JAMin & Winamp\\ \hline
+liquidsoap & --\\ \hline
+jme (Reproductor HTML5) & Reproductor en Flash\\ \hline
+WebcamStudio & WebcamMax\\ \hline
+\end{tabular}
+\caption{Equivalentes lo más parecido posible a las herramientas libres}
+\end{tablehere}
+\end{center}
+
+
+Hace algún tiempo vi una conferencia en el CPCO4 (Campus Party Colombia), la verdad no recuerdo el nombre de la persona y no la encontré por la web por eso no la cito, en esta se enseńó como hacer una emisora online con software privativo. Algunas de las quejas del expositor en la conferencia eran, ``shoutcast solo funciona con winamp''; ``winamp solo trabaja con la tarjeta de audio escogida como principal''; ``la configuración de archivos de texto con notepad es feo (eso puede ser debido a que pone el texto todo de un solo color y posiblemente no se aprecia la indentación como debe ser)'' y dijo también ``estoy más perdido que el hijo de limber'' y por las constantes fallas en el proceso decía ``eso le pasa al chavo, al coyote y a mi''. Mis observaciones fueron que el equipo se colgaba fácilmente, la razón es que posiblemente el software era muy pesado, empezando por el sistema operativo.
+
+Una de las cosas que si se hacían bien con el software privativo era cuando usaba herramientas como oddcast y zararadio aunque en sus versiones gratis poseen algunas limitaciones en cuanto a funcionalidad. Otra aplicación que usaba era WebcamMax que sirve para generar un fuente de vídeo con imágenes u otros vídeos para posteriormente unirla con el audio y enviarla a un canal en {\em ustream}, buscando un rato en la web encontré la alternativa libre {\em WebcamStudio} aunque por estar escrita para Java 1.6 ha resultado hasta el momento imposible hacerlo funcionar con nuevas versiones de Java, solo queda esperar a que la versión alpha siga desarrollándose y llegue a ser estable.
+
+Queda rescatar que tu libertad está sobre todas las cosas, así que aunque algunas veces el software privativo sea más funcional no hay que usarlo porque luego te esclavizaras a los desarrolladores de dicha herramienta.
+
+\sectiontext{white}{black}{żQué música puedo poner?, licencias asociadas}
+
+Cuando hacemos nuestra propia emisora en línea es necesario conocer algunas leyes colombianas e internacionales que nos impiden poner música de cualquier tipo sin
+\ebOpage{introcolor}{0.35}{Tecnologías Libres}%final de pagina 4
+considerar que existen los derechos de autor (patrimoniales y conexos) y que hay que posiblemente pagar por ellos a un ente recaudador de derechos como Sayco y Acinpro (al parecer va a ser cambiada por otro ente debido a la corrupción del mismo), de lo contrario se está cometiendo un delito.
+
+Los derechos de autor tienen distintas clases, entre los que interesan para el desarrollo de la pregunta están:
+\begin{itemize}
+\item Los derechos Morales: son los derechos ligados al autor y perduran por la eternidad, estos derechos son irrenunciables e imprescriptibles (ni ceder, vender o transferir).
+\item Los derechos Patrimoniales: son los derechos que definen la explotación de la obra (retribuciones por uso, reproducción, difusión) hasta cierto límite después de la muerte del autor, después de este plazo se convierte en lo que se llama dominio público.
+\item Los derechos Conexos: son los derechos que cobijan a personas distintas al autor (artistas, interpretes, traductores, editores, productores y otros)
+\end{itemize}
+
+\begin{center}
+\begin{tablehere}
+\begin{tabular}{|>{\columncolor{columnacolor}} c 
+		|>{\columncolor{columnacolor}} c 
+		|>{\columncolor{columnacolor}} c 
+		|>{\columncolor{columnacolor}} c |}\hline
+\multicolumn{4}{|>{\columncolor{filacolor}}c|}{Comparativa de tarifas de Sayco y Acinpro}\\ \hline
+\rowcolor{filacolor}Lugar & Categoría & Estrato & Precio \\ \hline
+Piojó 		& 6 & 1 & \$278.533   \\ \hline
+Natagaima 	& 4 & 2 & \$371.472   \\ \hline
+Ibagué 		& 2 & 2 & \$566.700   \\ \hline
+Bogotá 		& E & 3 & \$1.133.400 \\ \hline
+\end{tabular}
+\caption{Datos tomados de \url{http://www.saycoacinpro.org.co/test_tarifas.php} con el código 102 (Establecimientos de cualquier naturaleza que para fines de su objeto social vendan productos para llevar y consumir o usar en sitios diferentes al del establecimiento comercial. Ejemplo: Almacenes de cadena, Supermercados, Hipermercados, Bancos, Estación.) y Capacidad/Aforo de 50 personas}
+\end{tablehere}
+\end{center}
+
+Tal vez para una emisora libre de publicidad o una emisora estudiantil, sería muy difícil invertir recursos para la música y tener que suspender el uso de piezas musicales cuando es bien conocido que la música (ver arriba los argumentos) hace parte importante del proceso de comunidad que es lo que se busca en un grupo como GLUD.
+
+Existen algunos tipos de productos musicales debidos al cumplimiento de los derechos anteriormente nombrados y que se podrán utilizar en nuestra emisora teniendo en cuenta que uso es el que se le va a dar
+\begin{itemize}
+\item Música libre: Es la música que cumple los mismos principios del software libre
+\item Música con algunos derechos reservados: Es la música que no permiten las libertades de obra derivada y/o uso comercial.
+\end{itemize}
+Dentro de la música que se puede usar está la de Dominio Público, mucha de la mejor música del planeta se encuentra bajo esta licencia, entre ellas obras de arte como la música clásica; también encontramos piezas de audio que el autor ha decidido registrar con licencias como Creative Commons, Coloriuris o ArtLibre.
+
+Las licencias más usadas actualmente para contenidos libres o semilibres son las Creative Commons que son 6 licencias que surgen de la conjugación de las características o funciones que son, Atribución (by), No comercial (nc), Sin derivar (nd) y Compartir igual (sa). Las licencias libres\cite {ref2} son CC-by y CC-by-sa, las otras 4 que son CC-by-nd, CC-by-nc, CC-by-nd-nc y CC-by-nc-sa son las que se consideran semi-libres o con algunos derechos reservados. Pueden buscar su licencia ideal en la dirección \url{http://creativecommons.org/choose/} y posteriormente poner los meta-datos en tu sitio web.
+
+Estas licencias CC (Creative Commons) según cuenta la historia surgió debido a la aparición del Internet (hay que darse cuenta la importancia de esta en lo que que consideramos que es la libertad por lo menos en la tecnología) y el espíritu de compartir que hicieron que una persona Eric Eldred fuera subiendo a la red obras que quedaban en Dominio Público cada ańo, en la escena apareció Mary Bono viuda de Sonny Bono un actor estadounidense que quería que los derechos de autor durarán para siempre, y luego de su muerte, Mary Bono tomó el cargo que él tenía en la cámara de representantes y comenzó a promover lo que ella consideraba la última voluntad de su marido.
+
+Todo este lío resulta ser anticonstitucional pero igual se aumentó los ańos que se protegía el derecho patrimonial del autor, situación que causó descontento (para Eric Eldred y sus seguidores) ya que para ese ańo y otros venideros no habría liberación de obras; en esté dilema aparece Lawrence Lessig con un argumento contundente ``en la constitución de USA decía que se garantizaba el derecho monopólico por un tiempo limitado para asegurar y promover el progreso'', hubieron discusiones hasta que lo denominado ``The Mickey Mouse Protection Act''\cite {ref3} impuso con su poderío una influencia lo bastante grande para que el tiempo del derecho patrimonial se extendiera sin regulación aparente cada vez que llegaba la hora de que Mickey Mouse pasara a dominio público\cite {ref4} en 1976 decidieron parar estos cambios casi anuales. 
+
+Mickey Mouse ahora se esconde bajo una marca registrada que impide usarlo por ser prácticamente el logo de la compańía The Walt Disney Company y en el transcurso de todo esto Lawrence Lessig creó lo que actualmente es la organización sin fines de lucro Creative Commons como oposición directa al copyright.
+
+\begin{entradilla} %codigo para una entradilla
+{\em {\color{introcolor}{Internet}} y ĄĄĄel espíritu de compartir!!!.}
+\end{entradilla}
+\ebOpage{introcolor}{0.35}{Tecnologías Libres}%final de pagina 5
+\end{multicols}
+
+\sectiontext{white}{black}{Ilustración general del método usado en Radio GLUD}
+
+\begin{center}
+\myfig{0}{images/radioglud/radioglud.eps}{0.8}
+\mycaption{Gráfico del método usado en Radio GLUD, consiste en 2 computadores donde el client streaming que genera el source stream es Mafalda GLUD y el servidor de streaming es glud.udistrital.edu.co}
+\end{center}
+
+\begin{multicols}{2}
+
+Como se puede ver el método (ha de entenderse método como el esquema general o a grandes rasgos de la gestión, configuración y flujo del audio) implementado hasta ahora no incluye el uso de liquidsoap, y hay dos fuentes (generada por IDJC) y 2 puntos de montaje con baja (64 kbps) y alta (128 kbps) calidad de sonido (configurando el bitrate de las fuentes en IDJC) en el formato ogg vorbis, Se recomienda hacer bien los cálculos para que se pueda dar la suficiente calidad si son pocos o muchos los usuarios.\cite{ref5} La desventaja de éste es que claramente no hay un sistema de respaldo y en caso de que el IDJC falle, nuestro punto de montaje desaparecerá, se recomienda tener otros fuentes que deberían ser administrados a través de liquidsoap.
+
+\begin{entradilla} %codigo para una entradilla
+{\em {\color{introcolor}{``Aquel que sacrifica la libertad por seguridad, no merece ninguna de las dos''}} -- Benjamin Franklin}
+\end{entradilla}
+El ideal para todos estos tipos de sistemas se encuentra en la wiki de RadioŃú la dirección de dicho esquema se encuentra en \url{http://wiki.radiognu.org/como_funciona_una_radio} éste esquema es la proyección a futuro de Radio GLUD; pongo la imagen para que se pueda apreciar rápidamente.
+
+\begin{center}
+\resizebox{8cm}{!}{{\epsfbox{images/radioglud/radiognu1.eps}}}
+\mycaption{Esquema de como debería ser el flujo de datos en un sistema de streaming, extraído de \url{http://wiki.radiognu.org/como_funciona_una_radio}}
+\end{center}
+
+Si desean saber más de las tecnologías usadas en Radio GLUD, pueden visitar la dirección \url{http://radio.glud.org/files/documentos/InformeFinaldeActividades-RadioGLUD1.odt} donde se explica detalladamente todo lo que se ha hecho y donde se puede descargar.
+
+Para finalizar esta sección quiero dar crédito a los proyecto RadioŃú y Radio Liberación que ha dado mucho a la comunidad hispano-hablante ya que que con su documentación han dado un paso increíble para los que no sabemos leer muy bien Inglés (o definitivamente no sabemos).
+
+\sectiontext{white}{black}{Instrucciones para la primera emisión en una red local}
+
+Ahora que ha terminado toda la teoría se hace necesario
+\ebOpage{introcolor}{0.35}{Tecnologías Libres}%final de pagina 6
+ir a lo técnico, pero antes hay que aclarar la notación que se va a utilizar. La distribución en que se hizo fue Fedora GNU/Linux 16 Verne con gnome 3, para evitar todos estos pasos se podría instalar una distribución como Musix GNU+Linux que es una distro dedicada a la música; la notación \verb!$ comando! representa los comandos en una terminal como usuario normal (sin permisos de root o administrador); la notación \verb!# comando! representa la ejecución de los comandos especificados como root, para ello solo basta con digitar \verb!$ su! y escribir la clave de root, en caso de que se maneje con la utilidad \verb!sudo! habría que digitarse \verb!$ sudo su! y la clave del usuario común; en particular debido a que \verb!sudo! es una herramienta muy conveniente para copiar y pegar comandos en terminal sin cambiar de usuario, es la que se utiliza en este mini-tutorial, pero si no se tiene, pueden loquearse como root y ejecutar solamente los comandos que están con sudo.
+
+También es importante decir que los pasos no están tan detallados como se quisiera, pero se espera que con la teoría se pueda deducir lo que se dice que se haga o buscar en Internet para que quede claro, por ejemplo como se modifican los archivos con el editor nano, el lenguaje usado en los archivos o incluso como se abre una terminal y que es, ya que lastimosamente no hace parte de lo que se quiere en este artículo, pero por suerte hay mucha información en la red sobre estos temas.
+
+\begin{enumerate}
+
+\item Instalar los paquetes. 
+
+\lstset{language=html,frame=tb,framesep=2pt,basicstyle=\footnotesize} 
+\begin{lstlisting}
+$ sudo yum install -y jack-audio-connection-kit 
+		alsa-plugins-jack qjackctl 
+		pulseaudio-module-jack idjc
+\end{lstlisting}
+
+\item Agregar tu usuario al los grupos relacionados con el audio.
+
+\begin{lstlisting}
+$ sudo usermod -a -G audio $USER
+\end{lstlisting}
+
+\item Configurar el archivo \verb!limits.conf!. 
+
+\begin{lstlisting}
+$ sudo nano /etc/security/limits.conf 
+\end{lstlisting}
+
+Agregar al final del archivo las líneas.
+
+\begin{lstlisting}
+@audio - rtprio 99
+@audio - memlock unlimited
+@audio - nice -10
+\end{lstlisting}
+
+\item Modificar el archivo \verb!default.conf!.
+ 
+\begin{lstlisting}
+$ sudo nano /etc/pulse/default.pa 
+\end{lstlisting}
+
+Dejar la parte del archivo que se muestra de esta forma:
+
+\begin{lstlisting}
+### Load audio drivers statically (it's 
+		probably better to not load
+### these drivers manually, but instead 
+		use module-udev-detect --
+### see below -- for doing this automatically)
+#load-module module-alsa-sink
+#load-module module-alsa-source device=hw:1,0
+#load-module module-oss device="/dev/dsp" 	
+	sink_name=output source_name=input
+#load-module module-oss-mmap device="/dev/dsp" 
+	sink_name=output source_name=input
+#load-module module-null-sink
+#load-module module-pipe-sink
+load-module module-jack-source
+load-module module-jack-sink
+
+### Automatically load driver modules depending 
+		on the hardware available
+#.ifexists module-udev-detect.so
+#load-module module-udev-detect
+#.else
+### Alternatively use the static hardware 
+	detection module (for systems that
+### lack udev support)
+#load-module module-detect
+#.endif
+\end{lstlisting}
+
+\item Agregar QJackCtl a las aplicaciones en el inicio, para este fin ejecutar el comando.
+
+\begin{lstlisting}
+$ gnome-session-properties
+\end{lstlisting}
+
+\item Abrir QJackCtl y configurarlo activando las opciones.
+
+    Iniciar el servidor jack al iniciar qjackctl
+    Habilitar ícono en bandeja del sistema
+    Iniciar minimizado en la bandeja del sistema
+
+\item Para activar el soporte de mp3 para IDJC instalar. 
+
+\begin{lstlisting}
+$ sudo yum install -y lame lame-libs
+\end{lstlisting}
+
+\item Ahora por un problema de nombres de algunos archivos ejecutar. 
+
+\begin{lstlisting}
+$ sudo ln -s /usr/lib64/libmp3lame.so.0.0.0 
+		/usr/lib64/libmp3lame.so
+$ sudo ln -s /usr/lib64/libmad.so.0.2.1 
+		/usr/lib64/libmad.so
+\end{lstlisting}
+
+\item Solución de problemas comunes: Si al completar todos los pasos por alguna razón no te funciona el arranque del servidor jackd con QJackCtl, prueba quitando el pulseaudio de la lista de aplicaciones al inicio y de no funcionar algunos lo solucionan destildando el tiempo real en el setup de QJackCtl e incluso he escuchado que ejecutándolo como sudo funciona, y pues por si las dudas miren que la interfaz que se encuentra por defecto en (default) sea la correcta.
+
+\item Ahora se va a instalar icecast.
+
+\begin{lstlisting}
+$ sudo yum install -y icecast
+\end{lstlisting}
+
+\item Abrimos el archivo de configuración.
+
+\begin{lstlisting}
+$ sudo nano /etc/icecast.xml
+\end{lstlisting}
+
+Modificar los parámetros
+
+\begin{itemize}
+\item Cambiar en la línea 49
+\begin{lstlisting}
+    <hostname>localhost</hostname>
+\end{lstlisting}
+por la ip local del equipo, por ejemplo:
+\begin{lstlisting}
+    <hostname>192.168.0.5</hostname>
+\end{lstlisting}
+\item Agregar en la línea 121 el punto de montaje
+\begin{lstlisting}
+   <mount>
+	<mount-name>/stream.ogg</mount-name>
+        <username>hackme</username>
+        <password>hackme</password>
+        <max-listeners>100</max-listeners>
+    </mount>
+\end{lstlisting}
+\end{itemize}
+
+\item Iniciar el servidor Icecast.
+
+\begin{lstlisting}
+$ sudo service icecast start
+\end{lstlisting}
+
+\item Ahora se inicia IDJC, se agrega música y se agrega una nueva conexión de icecast 2 master con los datos del punto de montaje que se pusieron arriba; posteriormente se establece conexión con dicho servidor.
+
+\item Si todo resulta bien podrán acceder a el streaming local a través de la dirección \verb!http://192.168.0.5:8000/stream.ogg! bien sea con VLC o con algún otro reproductor que soporte streaming.
+
+\end{enumerate}
+
+\bibliographystyle{abbrv}
+\begin{bibliografia}
+\bibitem{ref1}
+Copia textual del párrafo 3 del artículo Demonio (informática). Wikipedia la enciclopedia libre.
+Recuperado de \url{es.wikipedia.org/wiki/Demonio_(informática)} el 19 de agosto de 2012.
+\bibitem{ref2}
+Artículo Música Libre. Wikipedia la enciclopedia libre.
+Recuperado de \url{es.wikipedia.org/wiki/Música_libre} el 10 de agosto de 2012.
+\bibitem{ref3}
+Artículo Mickey Mouse. Wikipedia la enciclopedia libre.
+Recuperado de \url{es.wikipedia.org/wiki/Mickey_Mouse} el 19 de agosto de 2012.
+\bibitem{ref4}
+Artículo Copyright Term Extension Act. Wikipedia the free encyclopedia.
+Recuperado de \url{en.wikipedia.org/wiki/Sonny_Bono_Copyright_Term_Extension_Act} el 19 de agosto de 2012.
+\bibitem{ref4}
+Artículo Estándares para Calidad y Ancho de Banda. RadioŃú.
+Recuperado de \url{wiki.radiognu.org/calidad} el 22 de agosto de 2012.
+\end{bibliografia}
+
+
+\begin{biografia}{images/radioglud/autor.eps}{Jorge Ulises Useche Cuellar} Estudiante de Ingeniería Electrónica, Interesado en el desarrollo de tecnologías libres que reduzcan la brecha social que existe hoy en día en Colombia al ser un país subdesarrollado. Viniendo de otro sector de Colombia encontró una simpatía inmediata al conocer el software libre e invierte su tiempo conociendo y desarrollando para la comunidad de software libre que le ha dado tanto.
+\end{biografia}
+
+\end{multicols} %termina el entorno multicols
+%\eOpage %comienza una pagina nueva
+
+
+
+\clearpage
+\pagebreak

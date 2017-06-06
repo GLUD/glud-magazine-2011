@@ -1,0 +1,286 @@
+% Este fihcero es una fiel copia de el Número 5 de la revista tecnologica Occam's Razor
+% 
+% Revista GLUD Número 0
+%
+% Esta obra está bajo una licencia Reconocimiento 2.5 Espańa de Creative
+% Commons. Para ver una copia de esta licencia, visite 
+% http://creativecommons.org/licenses/by/2.5/es/
+% o envie una carta a Creative Commons, 171 Second Street, Suite 300, 
+% San Francisco, California 94105, USA.
+
+
+\documentclass[10pt,a4paper,twoside]{article}
+
+% Paquetes... probablemente alguno no sea necesario
+% 
+
+\usepackage[utf8]{inputenc}                                                    
+\usepackage[greek,spanish]{babel}  % Símbolo del euro
+\usepackage{graphicx}
+\usepackage{a4,fancyhdr, multicol}
+\usepackage{float}
+\usepackage{pdftricks}
+\usepackage{pstricks}
+\usepackage{color}
+\usepackage{pst-plot}
+\usepackage{pst-eps}
+\usepackage{wrapfig}
+\usepackage{eso-pic}
+\usepackage{listings}
+\usepackage{textpos}
+\usepackage{epsf}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{colortbl}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue           % color of external links
+}
+
+
+\usepackage[T1]{fontenc} 
+
+
+% Configuración de tamańo de página
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.1cm}
+\setlength{\oddsidemargin}{0.05mm}
+\setlength{\evensidemargin}{0.05mm}
+
+\addtolength{\textwidth}{4cm}
+\addtolength{\topmargin}{-3.5cm}
+\addtolength{\textheight}{4.5cm}
+
+\pagestyle{fancy}
+
+% Configuración de Cabeceras Fancy Header
+\fancyhead{}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE]{\textbf{\textsf{GLUD Magazine | \thepage}}}
+\fancyfoot[RO]{\textbf{\textsf{\thepage | GLUD Magazine}}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Elimina l.neas de cabecera
+% 
+\renewcommand{\headrulewidth}{0pt}
+
+% Colores
+\definecolor{introcolor}{rgb}{0.04,0.09,0.16}
+\definecolor{listcolor}{rgb}{0.2,0.4,0.2}
+\definecolor{titlecolor}{rgb}{0.4,0.5,0.1}
+\definecolor{excolor}{rgb}{0.8,0.8,0.8}
+\definecolor{notecolor}{rgb}{0.4,0.4,1.0}
+\definecolor{encabezado}{rgb}{0.384,0.497,0.5}
+
+% ********************************************************
+% Definición de Comandos y Entornos
+% ********************************************************
+
+% Comandos de uso general
+% ---------------------------------------------------------
+% Secciones títulos y subtítulos de cada página
+\newcommand{\msection}[4]{
+{\begin{flushright}{
+{\psset{linecolor=black,linestyle=dotted}\psline(-17,0)}
+\colorbox{#1}{
+\begin{minipage}{#3\linewidth}
+\center
+  \textcolor{#2}{
+    \textsf{\textbf{#4}}}
+\end{minipage}
+}}\end{flushright}}
+
+\vspace{4mm}
+}
+
+\newcommand{\mtitle}[2]{
+  {\resizebox{#1}{0.7cm}{\textbf{\textsf{#2}}}}
+  \vspace{1mm}
+}
+
+
+\newcommand{\msubtitle}[2]{
+  {\resizebox{#1}{0.5cm}{{\gray{\textbf{\textsf{#2}}}}}}
+  \vspace{1mm}
+}
+
+% Principio de Página. Pone el cuadro superior con la sección
+\newcommand{\bOpage}[3]{
+  \msection{#1}{black}{#2}{#3}
+  \begin{multicols}{2}
+}
+
+% Fin de página. Termina el entorno multicols
+\newcommand{\eOpage}{
+\pagebreak
+\end{multicols}
+}
+
+% Fin e Inicio de Página. Sino utilizamos figuras fuera de las
+% columnas del cuerpo principal, esta es la forma adecuada de marcar
+% cada página
+\newcommand{\ebOpage}[3]{
+\eOpage
+\bOpage{#1}{#2}{#3}
+}
+
+% Crea el cuadro de introducción al principio de cada artículo
+\newcommand{\intro}[3]{
+\colorbox{#1}{
+  \begin{minipage}{.9\linewidth}
+    \vspace{2mm}
+    {{\resizebox{!}{1.0cm}{#2}}{#3}}
+  \vspace{1mm}
+  \end{minipage}
+}
+\vspace{4mm}
+}
+
+
+% Comando para introducir figura en entorno multicol
+\newcommand{\myfig}[3]{
+\begin{center}
+  \includegraphics[width=#3\hsize,angle=#1]{#2}
+  \nobreak
+\end{center}}
+
+% Caption para figuras en entorno multicol
+\setcounter{figure}{1}
+\newcommand{\mycaption}[1]{
+  \begin{quote}
+    {\small
+    {{\sc Figura} \arabic{figure}: #1}
+    }
+  \end{quote}
+  \stepcounter{figure}
+}
+
+
+% Comandos para utilizar tablas y figuras en entorno multicols
+\makeatletter
+\newenvironment{tablehere}
+  {\def\@captype{table}}
+  {}
+
+\newenvironment{figurehere}
+  {\def\@captype{figure}}
+  {}
+\makeatother
+
+% Caption para figuras en entorno multicol sin contador
+\newcommand{\nncaption}[1]{
+  %\begin{quote}
+    {\footnotesize{\textbf{
+    {#1}
+    }}}
+  %\end{quote}
+}
+
+\newcommand{\sectiontext}[3]{\vspace{4mm}{{\textcolor{titlecolor}{\large{\textbf{\textsf{#3}}}}}}
+\vspace{1mm}
+}
+
+
+\newcommand{\EOP}{\psframe[fillstyle=solid, fillcolor=titlecolor, linecolor=titlecolor](0,0)(4pt,4pt)}
+
+
+% Entornos (begin... end)
+% ----------------------------------------------------
+% Entorno para introducir ejemplos
+\newenvironment{mexample}{
+  \vspace{2mm}
+  \bgroup
+  \tiny
+}{
+  \egroup
+  \vspace{4mm}
+}
+
+% Entorno para introducir entradillas en el texto
+\newenvironment{entradilla}{
+  \vspace{5mm}
+  \hrule 
+  \vspace{2mm}
+  \bgroup
+  \LARGE
+\begin{spacing}{0.6}
+}{
+\end{spacing}
+  \egroup
+  \vspace{5mm}
+  \hrule
+  \vspace{5mm}
+}
+% Entorno para introducir Biografia del Autor.
+\newenvironment{biografia}[2]{
+\vspace{10mm}
+\hrule
+\begin{minipage}[t]{3cm}
+\myfig{0}{#1}{1} 
+\end{minipage}
+%\includegraphics[width=2.54 \hsize]{#1}
+  \nobreak
+\begin{minipage}[r]{5cm}
+ \bgroup
+  \small
+\textbf{#2}
+}{
+  \egroup
+  \vspace{3mm}
+\end{minipage}
+  \hrule
+  \vspace{5mm}
+}
+% Entorno para introducir la bibliografia del articulo.
+\newenvironment{bibliografia}{
+\begin{thebibliography}{1}
+}{
+\end{thebibliography}
+}
+
+
+
+% **************************************************************************
+% Comienza el documento
+\begin{document}
+
+% Portada, no utiliza Fancy Header e introduce imagen de portada con PStricks
+\pagestyle{empty}
+
+\rput(8,-14){{\resizebox{!}{30cm}{\epsfbox{images/portada_n1.eps}}}}
+
+\clearpage
+\pagebreak
+
+% Imagen con el sumario en la siguiente página
+\rput(8,-14.0){\resizebox{!}{30cm}{{\epsfbox{images/sumario1.eps}}}}
+
+
+\pagebreak
+
+% Activa Fancy Headers stilo e incluye los distintos artículos
+\pagestyle{fancy}
+
+\definecolor{introcolor}{rgb}{0.384,0.497,0.685}
+
+\include{editorial}
+
+% A continuación se colocan los articulos de la revista.
+
+\include{mi_articulo}
+\include{art_cobos}
+\include{ensayo}
+\include{OTySL}
+\include{alist}
+\include{stallman}
+\include{useche}
+\include{radioglud}
+\include{pfipy}
+
+
+\end{document}
